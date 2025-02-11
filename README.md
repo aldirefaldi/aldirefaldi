@@ -56,16 +56,28 @@ Let's connect and grow together in the world of DevOps! Feel free to reach out! 
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
     let x = 50, y = 50;
+
+    function getMousePos(canvas, event) {
+      const rect = canvas.getBoundingClientRect();
+      return {
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top
+      };
+    }
+
     canvas.addEventListener("click", (e) => {
-      x = e.clientX - canvas.offsetLeft;
-      y = e.clientY - canvas.offsetTop;
+      const pos = getMousePos(canvas, e);
+      x = pos.x - 15; // Adjust for centering
+      y = pos.y - 15;
       draw();
     });
+
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "red";
       ctx.fillRect(x, y, 30, 30);
     }
+
     draw();
   </script>
 </body>
