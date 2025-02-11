@@ -30,7 +30,6 @@ I’m a beginner programmer who is currently diving into the world of **IT Monit
 Let's connect and grow together in the world of DevOps! Feel free to reach out! 😊
 
 💬 **[LinkedIn](https://www.linkedin.com/)**  
-🐦 **[Twitter](https://twitter.com/)**  
 📂 **[Portfolio](#)** *(Coming Soon!)*  
 
 ---
