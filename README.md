@@ -29,9 +29,45 @@ I’m a beginner programmer who is currently diving into the world of **IT Monit
 ### 📫 Connect with Me  
 Let's connect and grow together in the world of DevOps! Feel free to reach out! 😊
 
-💬 **[LinkedIn](https://www.linkedin.com/)**  
+📧 **Email: your.email@example.com**  
 📂 **[Portfolio](#)** *(Coming Soon!)*  
 
 ---
 
 💻 *Always Learning | Always Building | Always Improving* 🚀
+
+---
+
+### 🎮 Play a Simple Game! 🕹️
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { background-color: black; color: white; text-align: center; font-family: Arial, sans-serif; }
+    canvas { border: 2px solid white; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h3>Click to move the box!</h3>
+  <canvas id="gameCanvas" width="400" height="400"></canvas>
+  <script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    let x = 50, y = 50;
+    canvas.addEventListener("click", (e) => {
+      x = e.clientX - canvas.offsetLeft;
+      y = e.clientY - canvas.offsetTop;
+      draw();
+    });
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "red";
+      ctx.fillRect(x, y, 30, 30);
+    }
+    draw();
+  </script>
+</body>
+</html>
+```
