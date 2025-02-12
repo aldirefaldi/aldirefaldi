@@ -86,7 +86,6 @@ Let's connect and grow together in the world of DevOps! Feel free to reach out! 
       } else {
         snake.pop();
       }
-
       if (head.x < 0 || head.y < 0 || head.x >= canvas.width || head.y >= canvas.height) {
         health--;
         if (health <= 0) {
