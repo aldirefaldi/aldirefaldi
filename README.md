@@ -29,7 +29,7 @@ I’m a beginner programmer who is currently diving into the world of **IT Monit
 ### 📫 Connect with Me  
 Let's connect and grow together in the world of DevOps! Feel free to reach out! 😊
 
-📧 **Email: your.email@example.com**  
+📧 **Email: rflgam@gmail.com**  
 📂 **[Portfolio](#)** *(Coming Soon!)*  
 
 ---
