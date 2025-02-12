@@ -38,7 +38,7 @@ Let's connect and grow together in the world of DevOps! Feel free to reach out! 
 
 ---
 
-### 🎮 Play a Simple Game! 🕹️
+### 🎮 Play Snake Game! 🕹️
 
 ```html
 <!DOCTYPE html>
@@ -50,35 +50,73 @@ Let's connect and grow together in the world of DevOps! Feel free to reach out! 
   </style>
 </head>
 <body>
-  <h3>Click to move the box!</h3>
+  <h3>Snake Game - Eat to Score!</h3>
+  <p>Use arrow keys to move</p>
   <canvas id="gameCanvas" width="400" height="400"></canvas>
   <script>
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
-    let x = 50, y = 50;
+    
+    let snake = [{ x: 200, y: 200 }];
+    let food = { x: 100, y: 100 };
+    let direction = "RIGHT";
+    let score = 0;
+    let health = 3;
 
-    function getMousePos(canvas, event) {
-      const rect = canvas.getBoundingClientRect();
-      return {
-        x: event.clientX - rect.left,
-        y: event.clientY - rect.top
-      };
+    function drawSnake() {
+      ctx.fillStyle = "lime";
+      snake.forEach((segment) => ctx.fillRect(segment.x, segment.y, 20, 20));
     }
 
-    canvas.addEventListener("click", (e) => {
-      const pos = getMousePos(canvas, e);
-      x = pos.x - 15; // Adjust for centering
-      y = pos.y - 15;
-      draw();
+    function drawFood() {
+      ctx.fillStyle = "red";
+      ctx.fillRect(food.x, food.y, 20, 20);
+    }
+
+    function updateGame() {
+      let head = { ...snake[0] };
+      if (direction === "UP") head.y -= 20;
+      if (direction === "DOWN") head.y += 20;
+      if (direction === "LEFT") head.x -= 20;
+      if (direction === "RIGHT") head.x += 20;
+
+      if (head.x === food.x && head.y === food.y) {
+        score++;
+        food = { x: Math.floor(Math.random() * 20) * 20, y: Math.floor(Math.random() * 20) * 20 };
+      } else {
+        snake.pop();
+      }
+
+      if (head.x < 0 || head.y < 0 || head.x >= canvas.width || head.y >= canvas.height) {
+        health--;
+        if (health <= 0) {
+          alert("Game Over! Score: " + score);
+          location.reload();
+        }
+        return;
+      }
+
+      snake.unshift(head);
+      drawGame();
+    }
+
+    function drawGame() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawSnake();
+      drawFood();
+      ctx.fillStyle = "white";
+      ctx.fillText("Score: " + score, 10, 20);
+      ctx.fillText("Health: " + health, 10, 40);
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
+      if (event.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
+      if (event.key === "ArrowLeft" && direction !== "RIGHT") direction = "LEFT";
+      if (event.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
     });
 
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "red";
-      ctx.fillRect(x, y, 30, 30);
-    }
-
-    draw();
+    setInterval(updateGame, 150);
   </script>
 </body>
 </html>
