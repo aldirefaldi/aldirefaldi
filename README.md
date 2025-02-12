@@ -46,25 +46,35 @@ Let's connect and grow together in the world of DevOps! Feel free to reach out! 
 <head>
   <style>
     body { background-color: black; color: white; text-align: center; font-family: Arial, sans-serif; }
-    canvas { border: 2px solid white; margin-top: 20px; }
+    .game-container { display: flex; flex-direction: column; align-items: center; }
+    canvas { border: 4px solid white; background-color: #222; }
+    button { margin-top: 10px; padding: 10px 20px; font-size: 16px; background: lime; border: none; cursor: pointer; }
   </style>
 </head>
 <body>
-  <h3>Snake Game - Eat to Score!</h3>
-  <p>Use arrow keys to move</p>
-  <canvas id="gameCanvas" width="400" height="400"></canvas>
+  <div class="game-container">
+    <h3>Snake Game - Eat to Score!</h3>
+    <p>Use arrow keys to move</p>
+    <button onclick="startGame()">Start Game</button>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+  </div>
   <script>
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
-    
-    let snake = [{ x: 200, y: 200 }];
-    let food = { x: 100, y: 100 };
-    let direction = "RIGHT";
-    let score = 0;
-    let health = 3;
+    let snake, food, direction, score, gameRunning, snakeColor;
+
+    function startGame() {
+      snake = [{ x: 200, y: 200 }];
+      food = { x: 100, y: 100 };
+      direction = "RIGHT";
+      score = 0;
+      gameRunning = true;
+      snakeColor = "lime";
+      gameLoop();
+    }
 
     function drawSnake() {
-      ctx.fillStyle = "lime";
+      ctx.fillStyle = snakeColor;
       snake.forEach((segment) => ctx.fillRect(segment.x, segment.y, 20, 20));
     }
 
@@ -73,25 +83,41 @@ Let's connect and grow together in the world of DevOps! Feel free to reach out! 
       ctx.fillRect(food.x, food.y, 20, 20);
     }
 
+    function getRandomColor() {
+      const colors = ["lime", "cyan", "yellow", "orange", "purple", "blue"];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
     function updateGame() {
+      if (!gameRunning) return;
       let head = { ...snake[0] };
       if (direction === "UP") head.y -= 20;
       if (direction === "DOWN") head.y += 20;
       if (direction === "LEFT") head.x -= 20;
       if (direction === "RIGHT") head.x += 20;
 
+      // Wrap around edges
+      if (head.x < 0) head.x = canvas.width - 20;
+      if (head.y < 0) head.y = canvas.height - 20;
+      if (head.x >= canvas.width) head.x = 0;
+      if (head.y >= canvas.height) head.y = 0;
+
+      // Check collision with food
       if (head.x === food.x && head.y === food.y) {
         score++;
         food = { x: Math.floor(Math.random() * 20) * 20, y: Math.floor(Math.random() * 20) * 20 };
+        if (score % 10 === 0) {
+          snakeColor = getRandomColor();
+          snake.push({}); // Increase snake size every 10 points
+        }
       } else {
         snake.pop();
       }
-      if (head.x < 0 || head.y < 0 || head.x >= canvas.width || head.y >= canvas.height) {
-        health--;
-        if (health <= 0) {
-          alert("Game Over! Score: " + score);
-          location.reload();
-        }
+
+      // Check collision with itself
+      if (snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+        alert("Game Over! Score: " + score);
+        gameRunning = false;
         return;
       }
 
@@ -105,7 +131,6 @@ Let's connect and grow together in the world of DevOps! Feel free to reach out! 
       drawFood();
       ctx.fillStyle = "white";
       ctx.fillText("Score: " + score, 10, 20);
-      ctx.fillText("Health: " + health, 10, 40);
     }
 
     document.addEventListener("keydown", (event) => {
@@ -115,7 +140,12 @@ Let's connect and grow together in the world of DevOps! Feel free to reach out! 
       if (event.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
     });
 
-    setInterval(updateGame, 150);
+    function gameLoop() {
+      if (gameRunning) {
+        updateGame();
+        setTimeout(gameLoop, 150);
+      }
+    }
   </script>
 </body>
 </html>
