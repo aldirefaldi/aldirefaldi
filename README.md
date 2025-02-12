@@ -1,6 +1,6 @@
 ### Hi there! 👋 Welcome to my GitHub Profile!  
 
-![DevOps GIF](https://media.giphy.com/media/QTfX9Ejfra3ZmNxh6B/giphy.gif)
+![DevOps GIF](https://simplecoding.dev/assets/devops.gif)
 
 ---
 
