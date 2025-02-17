@@ -43,9 +43,6 @@ https://aldirefaldi.github.io/game
 https://aldirefaldi.github.io/game-monitoring
 
 ### 🐍 Snake Contributions Graph
-<picture>
-  <source media="(prefers-color-scheme: light)" srcset="https://aldirefaldi.github.io/aldirefaldi/github-contribution-grid-snake.svg" />
-  <img alt="github-snake" src="https://aldirefaldi.github.io/aldirefaldi/github-contribution-grid-snake.svg" />
-</picture>
+(https://github.com/aldirefaldi/aldirefaldi/output/github-snake.gif)
 
 
