@@ -41,5 +41,3 @@ Let's connect and grow together in the world of DevOps! Feel free to reach out! 
 ### 🎮 Play My Game! 🕹️
 https://aldirefaldi.github.io/game
 https://aldirefaldi.github.io/game-monitoring
-
-![GitHub Snake](https://aldirefaldi.github.io/aldirefaldi/github-snake.svg)
