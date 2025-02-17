@@ -40,7 +40,7 @@ jobs:
         run: |
           git add dist/github-contribution-grid-snake.gif dist/github-contribution-grid-snake.svg
           git commit -m "Update snake GIF and SVG"
-          git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/aldirefaldi/aldirefaldi.git
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/aldirefaldi/aldirefaldi.git
 
       # Push the changes to GitHub Pages (optional)
       - name: Deploy to GitHub Pages
