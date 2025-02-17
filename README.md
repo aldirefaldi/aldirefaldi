@@ -43,4 +43,6 @@ https://aldirefaldi.github.io/game
 https://aldirefaldi.github.io/game-monitoring
 
 ### 🐍 Snake Contributions Graph
-![Snake animation](https://raw.githubusercontent.com/aldirefaldi/aldirefaldi/output/dist/snake.svg)
+### 🐍 Snake Contributions Graph
+![Snake animation](https://raw.githubusercontent.com/aldirefaldi/aldirefaldi/output/github-contribution-grid-snake.svg#gh-dark-mode-only)
+![Snake animation](https://raw.githubusercontent.com/aldirefaldi/aldirefaldi/output/github-contribution-grid-snake-dark.svg#gh-light-mode-only)
