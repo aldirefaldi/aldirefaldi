@@ -41,3 +41,6 @@ Let's connect and grow together in the world of DevOps! Feel free to reach out! 
 ### 🎮 Play My Game! 🕹️
 https://aldirefaldi.github.io/game
 https://aldirefaldi.github.io/game-monitoring
+
+### 🐍 Snake Contributions Graph
+![Snake animation](https://raw.githubusercontent.com/aldirefaldi/aldirefaldi/output/dist/snake.svg)
