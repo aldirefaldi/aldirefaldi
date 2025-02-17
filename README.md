@@ -1,4 +1,4 @@
-![GIF](text2.gif)
+![GIF](textku.gif)
 ![DevOps GIF](https://simplecoding.dev/assets/devops.gif)
 
 ---
