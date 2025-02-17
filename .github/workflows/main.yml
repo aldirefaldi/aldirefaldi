@@ -1,52 +1,49 @@
-name: Generate Snake
+name: Generate GitHub Contributions Snake Animation
 
-# Controls when the action will run. This action runs every 6 hours.
 on:
+  # Schedule the workflow to run daily at midnight UTC
   schedule:
-    # every 6 hours
-    - cron: "0 */6 * * *"
-  workflow_dispatch: # This allows manual triggering from the Actions tab.
+    - cron: "0 0 * * *"
+
+  # Allow manual triggering of the workflow
+  workflow_dispatch:
+
+  # Trigger the workflow on pushes to the main branch
+  push:
+    branches:
+      - main
 
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  generate:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks out the repository so your job can access it
-      - uses: actions/checkout@v2
+      # Step 1: Checkout the repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-      # Generates the snake
-      - uses: Platane/snk@master
-        id: snake-gif
+      # Step 2: Generate the snake animations
+      - name: Generate GitHub Contributions Snake Animations
+        uses: Platane/snk@v3
         with:
-          github_user_name: aldirefaldi
-          gif_out_path: dist/github-contribution-grid-snake.gif
-          svg_out_path: dist/github-contribution-grid-snake.svg
+          # GitHub username to generate the animation for
+          github_user_name: ${{ github.repository_owner }}
 
-      # Show the status of the build. Makes it easier for debugging if there are any issues.
-      - run: git status
-
-      # Set up Git config to use GitHub Actions bot identity
-      - name: Set Git config
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-      # Commit and push the changes to the repository
-      - name: Commit changes
-        run: |
-          git add dist/github-contribution-grid-snake.gif dist/github-contribution-grid-snake.svg
-          git commit -m "Update snake GIF and SVG"
-          git push https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/aldirefaldi/aldirefaldi.git
-
-      # Push the changes to GitHub Pages (optional)
-      - name: Deploy to GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v2.1.3
-        with:
-          target_branch: gh-pages
-          build_dir: dist
+          # Define the output files and their configurations
+          outputs: |
+            dist/github-snake.svg
+            dist/github-snake-dark.svg?palette=github-dark
+            dist/ocean.gif?color_snake=orange&color_dots=#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Step 3: Deploy the generated files to the 'output' branch
+      - name: Deploy to Output Branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: output
+          # Optionally, you can set a custom commit message
+          commit_message: "Update snake animation [skip ci]"
