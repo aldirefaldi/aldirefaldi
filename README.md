@@ -38,6 +38,6 @@ Let's connect and grow together in the world of DevOps! Feel free to reach out! 
 
 ---
 
-### 🎮 Play Snake Game! 🕹️
+### 🎮 Play My Game! 🕹️
 https://aldirefaldi.github.io/game
 https://aldirefaldi.github.io/game-monitoring
