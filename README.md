@@ -1,4 +1,40 @@
-### Hi there! 👋 Welcome to REFALDI PUTRA SASONGKO GitHub Profile!  
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .text {
+            font-size: 24px;
+            font-weight: bold;
+            color: blue;
+            font-family: Arial, sans-serif;
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .welcome {
+            animation: fadeInOut 4s infinite;
+        }
+
+        .name {
+            animation: fadeInOut 4s infinite;
+            animation-delay: 2s;
+        }
+    </style>
+</head>
+<body>
+    <div class="text welcome">Selamat datang di GitHub</div>
+    <div class="text name">REFALDI PUTRA SASONGKO</div>
+</body>
+</html>
+
 
 ![DevOps GIF](https://simplecoding.dev/assets/devops.gif)
 
