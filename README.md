@@ -1,4 +1,4 @@
-![Welcome Animation](text.gif)
+![GIF](text.gif)
 ![DevOps GIF](https://simplecoding.dev/assets/devops.gif)
 
 ---
